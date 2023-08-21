@@ -1,9 +1,10 @@
 import subprocess
-from flask import Flask, request, Response
+
+from flask import Flask, Response, request
 
 server = Flask(__name__)
 
-SINGLEFILE_EXECUTABLE = '/node_modules/single-file/cli/single-file'
+SINGLEFILE_EXECUTABLE = 'single-file'
 BROWSER_PATH = '/opt/google/chrome/google-chrome'
 BROWSER_ARGS = '["--no-sandbox"]'
 
@@ -18,7 +19,7 @@ def singlefile():
             "--browser-args='%s'" % BROWSER_ARGS,
             request.form['url'],
             '--dump-content',
-            ],
+        ],
             stdout=subprocess.PIPE)
     else:
         return Response('Error: url parameter not found.',
