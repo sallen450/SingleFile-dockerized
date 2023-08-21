@@ -1,4 +1,5 @@
 # SingleFile-dockerized
+
 SingleFile docker implementation providing access via either a dockerized-CLI or a WEB service.
 
 Prototype work:
@@ -9,19 +10,20 @@ https://github.com/gildas-lormeau/SingleFile
 ### Option #1: Run it directly from your docker host:
 
 ```bash
-docker pull screenbreak/singlefile-dockerized
-docker run -it screenbreak/singlefile-dockerized http://www.example.com/
+docker pull sallen450/singlefile-server
+docker run -it sallen450/singlefile-server http://www.example.com/
 ```
+
 You will get the HTML output of SingleFile in your console stdout.
 
 ### Option #2: Deploy it as a webserver in a docker-compose.yml:
 
 ```yaml
-version: '3'
+version: "3"
 services:
   singlefile:
     container_name: singlefile
-    image: screenbreak/singlefile-dockerized
+    image: sallen450/singlefile-server
     entrypoint: python3
     command: webserver.py
     expose:
@@ -38,8 +40,8 @@ curl -d 'url=http://www.example.com/' singlefile:80
 
 ```html
 <!DOCTYPE html> <html><!--
- Page saved with SingleFile 
- url: http://www.example.com/ 
+ Page saved with SingleFile
+ url: http://www.example.com/
  saved date: Sun Sep 13 2020 18:21:28 GMT+0000 (Coordinated Universal Time)
 --><meta charset=utf-8>
 <title>Example Domain</title>
